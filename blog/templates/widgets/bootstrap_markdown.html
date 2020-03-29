@@ -1,0 +1,12 @@
+{% include "django/forms/widgets/textarea.html" %}
+
+<script>
+  jQuery(document).ready(function ($) {
+    $("#id_{{ widget.name }}").markdownEditor({
+      preview: true,
+      onPreview: function (content, callback) {
+        callback(marked(content))
+      }
+    })
+  })
+</script>

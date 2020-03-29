@@ -1,0 +1,23 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+autopep8 = "*"
+
+[packages]
+django-admin-tools = "*"
+django-debug-toolbar = "*"
+django-crispy-forms = "*"
+ipython = "*"
+pillow = "*"
+django-easy-audit = "*"
+django-cleanup = "*"
+psycopg2 = "*"
+django = "==2.2"
+python-decouple = "*"
+martor = "*"
+
+[requires]
+python_version = "3.7"

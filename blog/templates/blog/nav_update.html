@@ -1,0 +1,9 @@
+{% if user.is_authenticated %}
+<ul class="navbar-nav mr-sm-2">
+  <li class="nav-iteml">
+    <a class="nav-link" href="{{ post.get_update_url }}">
+      Update post
+    </a>
+  </li>
+</ul>
+{% endif %}

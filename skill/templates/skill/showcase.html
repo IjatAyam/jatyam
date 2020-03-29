@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}Showcase | {{ block.super }}{% endblock title %}
+
+{% block main %}
+<!-- Start container -->
+<div class="container">
+  <!-- Start showcase -->
+  <div class="mt-4">
+    <div class="row justify-content-center">
+      <h1>My Showcase</h1>
+    </div>
+
+    <hr class="custom-divider" />
+    {% for showcase in showcases %}
+    <!-- Start single odd showcase -->
+    <div class="row" data-aos="fade-{% if forloop.counter|divisibleby:2 %}right{% else %}left{% endif %}"
+      data-aos-offset="300">
+      <div class="col-md-5 order-md-{% if forloop.counter|divisibleby:2 %}2{% else %}1{% endif %}">
+        <a href="{{ showcase.link_to }}">
+          <img class="img-fluid" src="{{ showcase.img.url }}" alt="{{ showcase.title }}">
+        </a>
+      </div>
+      <div class="col-md-7 order-md-{% if forloop.counter|divisibleby:2 %}1{% else %}2{% endif %} my-auto">
+        <a class="showcase-link" href="{{ showcase.link_to }}">
+          <h2 class="showcase-heading mt-3 mt-md-0">
+            {{ showcase.title }}
+            <span>
+              {% for skill in showcase.skills.all %}
+              <img src="{{ skill.svg.url }}" class="img-fluid my-2" style="max-height: 25px;" />
+              {% endfor %}
+            </span>
+          </h2>
+        </a>
+        <p class="lead">
+          {{ showcase.desc }}
+        </p>
+      </div>
+    </div>
+    <!-- End single odd showcase -->
+
+    <hr class="custom-divider" />
+    {% endfor %}
+  </div>
+  <!-- End showcase -->
+
+  {% with pages=showcases %}
+  {% include 'layouts/pagination.html' %}
+  {% endwith %}
+
+  <hr class="custom-divider" />
+</div>
+<!-- End container -->
+{% endblock main %}

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load martortags %}
+
+{% block title %}{{ post.meta_title }}{% endblock title %}
+
+{% block header %}
+{% include 'layouts/header.html' with extra_nav="blog/nav_update.html" %}
+{% endblock header %}
+
+{% block main %}
+<!-- Start container -->
+<div class="container">
+  <!-- Start post image -->
+  <div class="row">
+    <div class="col-12 text-white mt-4">
+      {% if post.banner %}
+      <img src="{{ post.banner.url }}" class="rounded img-fluid">
+      {% endif %}
+    </div>
+  </div>
+  <!-- End post image -->
+
+  <!-- Start blog post -->
+  <div class="blog-post mt-3">
+    <h2 class="blog-post-title">{{ post.title }}</h2>
+    <strong class="d-inline-block mb-2" style="color: {{ post.category.color }};">{{ post.category.name }}</strong>
+    <p class="blog-post-meta">
+      {{ post.published_at|date:"j F Y" }} by <a href="{% url 'contact' %}">{{ jatyam.user.get_full_name }}</a>
+    </p>
+
+    <p>
+      {{ post.desc }}
+    </p>
+    <hr />
+
+    {{ post.content|safe_markdown }}
+
+  </div>
+  <!-- End blog post -->
+
+  <hr class="custom-divider" />
+
+  {% with identifier=post.slug %}
+  {% include 'layouts/comments.html' %}
+  {% endwith %}
+
+  <hr class="custom-divider" />
+</div>
+<!-- End container -->
+{% endblock main %}

@@ -1,0 +1,52 @@
+{% load static %}
+<!-- Start footer -->
+<footer class="container">
+  <hr />
+  <div class="row">
+    <div class="col-12 col-md-6">
+      <p>&copy; {{ cr }} &middot; <a href="{% url 'contact' %}">Contact</a> &middot;</p>
+    </div>
+    <div class="col-12 col-md-6">
+      <p class="text-right">
+        {% if jatyam.instagram %}
+        <a class="footer-social" href="https://www.instagram.com/{{ jatyam.instagram }}/">
+          <img src="{% static '/svg/Instagram.svg' %}" />
+        </a>
+        &middot;
+        {% endif %}
+        {% if jatyam.facebook %}
+        <a class="footer-social" href="https://www.facebook.com/{{ jatyam.facebook }}">
+          <img src="{% static '/svg/Facebook.svg' %}" />
+        </a>
+        &middot;
+        {% endif %}
+        {% if jatyam.twitter %}
+        <a class="footer-social" href="https://twitter.com/{{ jatyam.twitter }}">
+          <img src="{% static '/svg/Twitter.svg' %}" />
+        </a>
+        &middot;
+        {% endif %}
+        {% if jatyam.youtube %}
+        <a class="footer-social" href="https://www.youtube.com/user/{{ jatyam.youtube }}">
+          <img src="{% static '/svg/YouTube.svg' %}" />
+        </a>
+        &middot;
+        {% endif %}
+        {% if jatyam.github %}
+        <a class="footer-social" href="https://github.com/{{ jatyam.github }}">
+          <img src="{% static '/svg/Github.svg' %}" />
+        </a>
+        &middot;
+        {% endif %}
+        {% if jatyam.linkedin %}
+        <a class="footer-social" href="https://www.linkedin.com/in/{{ jatyam.linkedin }}/">
+          <img src="{% static '/svg/Linkedin.svg' %}" />
+        </a>
+        &middot;
+        {% endif %}
+        <a href="#">Back to top</a>
+      </p>
+    </div>
+  </div>
+</footer>
+<!-- End footer -->

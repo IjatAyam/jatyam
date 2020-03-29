@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}Blog | {{ block.super }}{% endblock title %}
+
+{% block header %}
+{% include 'layouts/header.html' with extra_nav="blog/nav_create.html" %}
+{% endblock header %}
+
+{% block main %}
+<!-- Start container -->
+<div class="container">
+  <!-- Start blogs -->
+  <div class="row justify-content-center mt-4">
+    <h1>My Blog</h1>
+  </div>
+
+  <hr class="custom-divider" />
+
+  <div class="row mb-2">
+    {% for post in posts %}
+    <!-- Start single odd blog display -->
+    <div class="col-lg-6" data-aos="fade-up-{% if forloop.counter|divisibleby:2 %}left{% else %}right{% endif %}"
+      data-aos-offset="50">
+      <div
+        class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative post-card">
+        <div
+          class="col p-4 d-flex flex-column position-static order-md-{% if forloop.counter|divisibleby:2 %}2{% else %}1{% endif %}">
+          <strong class="d-inline-block mb-2"
+            style="color: {{ post.category.color }};">{{ post.category.name }}</strong>
+          <h3 class="mb-0">{{ post.title }}</h3>
+          <div class="mb-1 text-muted">
+            {{ post.published_at|date:"j M Y" }} &middot;
+            <a href="{{ post.get_absolute_url }}#disqus_thread" class="disabled">comments</a>
+          </div>
+          <p class="mb-auto">
+            {{ post.desc|truncatechars:100 }}
+          </p>
+          <a href="{{ post.get_absolute_url }}" class="stretched-link">Continue reading...</a>
+        </div>
+        <div class="col-auto d-none d-md-block order-md-{% if forloop.counter|divisibleby:2 %}1{% else %}2{% endif %}">
+          {% if post.thumb %}
+          <img class="img-fluid" src="{{ post.thumb.url }}">
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <!-- End single odd blog display -->
+    {% endfor %}
+  </div>
+  <!-- End blogs -->
+
+  <hr class="custom-divider" />
+
+  {% with pages=posts %}
+  {% include 'layouts/pagination.html' %}
+  {% endwith %}
+
+  <hr class="custom-divider" />
+</div>
+<!-- End container -->
+{% endblock main %}
+
+{% block extra_js %}
+<script id="dsq-count-scr" src="//jatyam.disqus.com/count.js" async></script>
+{% endblock extra_js %}
