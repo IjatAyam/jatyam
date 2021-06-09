@@ -15,7 +15,7 @@ pillow = "*"
 django-easy-audit = "*"
 django-cleanup = "*"
 psycopg2 = "*"
-django = "==2.2"
+django = "==2.2.22"
 python-decouple = "*"
 martor = "*"
 
